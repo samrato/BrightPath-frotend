@@ -7,8 +7,11 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 
-const allowedOrigins =["http://localhost:8081", "exp://192.168.180.121:8081"];
-
+const allowedOrigins = [
+  "http://localhost:8081",              // Expo Web local
+  "https://brightpath-frotend.onrender.com", // Optional self-origin for APIs
+  "exp://ulnrsjs-9563-juma-8081.exp.direct", // Expo Go (if you're accessing from this tunnel)
+];
 app.use(
   cors({
     origin: function (origin, callback) {
