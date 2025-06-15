@@ -24,7 +24,7 @@ app.use(
 );
 
 app.use("/api",routes);
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 7000;
 
 app.listen(PORT, async () => {
   try {
