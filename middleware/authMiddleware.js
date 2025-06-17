@@ -12,8 +12,7 @@ const authMiddleware = async (req, res, next) => {
     const token = Authorization.split(" ")[1];
 
     const info = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Fix here — use `info.id` if that's what you signed
+    
     const user = await User.findById(info.id).select("-password");
 
     if (!user) {
