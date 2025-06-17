@@ -11,17 +11,15 @@ const authMiddleware = async (req, res, next) => {
 
     const token = Authorization.split(" ")[1];
 
-    // Verify Token
     const info = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Find user by ID and exclude password
-    const user = await User.findById(info.userId).select("-password");
+    // Fix here — use `info.id` if that's what you signed
+    const user = await User.findById(info.id).select("-password");
 
     if (!user) {
       return res.status(401).json({ message: "Invalid token: user not found" });
     }
 
-    // Attach user to request
     req.user = user;
     next();
   } catch (err) {
